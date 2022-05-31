@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: USER-SERVICE
+          uri: lib://USER-SERVICE
+          predicates:
+            - path=/users**
+        - id: DEPARTMENT-SERVICE
+          uri: lib://DEPARTMENT-SERVICE
+          predicates:
+            - path=/department**
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http:localhost:8761/eureka/
+      instance:
+        hostname: localhost
